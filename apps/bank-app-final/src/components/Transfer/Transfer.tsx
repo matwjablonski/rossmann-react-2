@@ -1,32 +1,37 @@
 import { FC, useState } from 'react';
 import { prepareTransferValue } from '../../utils/prepareTransferValue';
-import TransferTypeComponent from '../TransferType/TransferType';
+import TransferDetails from '../TransferDetails/TransferDetails';
 import { TransferProps } from './Transfer.model';
 
 const Transfer: FC<TransferProps> = ({
+  id,
   name, 
   value,
   currency, 
   date,
   type,
+  isActive,
+  handleClick,
 }) => {
-  const [ isClicked, setIsClicked ] = useState<boolean>(false);
+  const [ showDetails, setShowDetails ] = useState<boolean>(false);
   const styleObj = {
     padding: '10px',
-    color: isClicked ? 'red' : 'blue',
+    color: showDetails ? 'red' : 'blue',
   }
 
-  const handleClick = () => {
-    setIsClicked((prevState) => !prevState);
+  const onClick = () => {
+    handleClick(id);
+    setShowDetails((prevState) => !prevState);
   }
 
   return <li style={styleObj}>
-    <div onClick={handleClick}>
-      {name} (<TransferTypeComponent type={type}/>)
+    <div onClick={onClick}>
+      {name}
     </div>
     <div>
       {prepareTransferValue(value, currency)}
     </div>
+    {isActive &&<TransferDetails type={type} date={date} />}
   </li>
 }
 
