@@ -2,6 +2,7 @@ import { FC, useState } from 'react';
 import { prepareTransferValue } from '../../utils/prepareTransferValue';
 import TransferDetails from '../TransferDetails/TransferDetails';
 import { TransferProps } from './Transfer.model';
+import TransferTypeComponent from '../TransferType/TransferType';
 
 const Transfer: FC<TransferProps> = ({
   id,
@@ -31,7 +32,10 @@ const Transfer: FC<TransferProps> = ({
     <div>
       {prepareTransferValue(value, currency)}
     </div>
-    {isActive &&<TransferDetails type={type} date={date} />}
+    {isActive && <TransferDetails
+      date={date}
+      typeComponent={<TransferTypeComponent type={type}/>}  
+    />}
   </li>
 }
 

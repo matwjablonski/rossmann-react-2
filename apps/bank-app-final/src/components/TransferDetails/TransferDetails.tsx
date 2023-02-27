@@ -1,17 +1,16 @@
-import { FC } from 'react';
+import { FC, ReactNode } from 'react';
 import { prepareDate } from '../../utils/prepareDate';
-import TransferTypeComponent from '../TransferType/TransferType';
 
 interface TransferDetailsProps {
   date: string | Date;
-  type: 'income' | 'outcome';
+  typeComponent: ReactNode;
 }
 
-const TransferDetails: FC<TransferDetailsProps> = ({ date, type }) => {
+const TransferDetails: FC<TransferDetailsProps> = ({ date, typeComponent }) => {
   return (
     <div>
       {prepareDate(date)}
-      (<TransferTypeComponent type={type}/>)
+      ({typeComponent})
     </div>
   )
 }
