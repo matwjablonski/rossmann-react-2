@@ -1,4 +1,6 @@
 import { ChangeEvent, SyntheticEvent, useState } from 'react';
+import Button from '../Button/Button';
+import FormField from '../FormField/FormField';
 
 const LoginForm = () => {
   const [ formValue, setFormValue ] = useState({
@@ -24,29 +26,25 @@ const LoginForm = () => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <label htmlFor="login">
-        Login:
-      </label>
-      <input
+      <FormField
         placeholder='Wpisz login'
         type="text"
+        label="Login:"
         id="login"
         name="login"
         value={formValue.login}
-        onChange={(e: ChangeEvent<HTMLInputElement>) => handleChange(e)}
+        handleChange={(e: ChangeEvent<HTMLInputElement>) => handleChange(e)}
       />
-      <label htmlFor="password">
-        Hasło:
-      </label>
-      <input 
+      <FormField
         placeholder='Wpisz hasło'
         type="password"
+        label="Hasło:"
         id="password"
         name="password"
         value={formValue.password} 
-        onChange={(e: ChangeEvent<HTMLInputElement>) => handleChange(e)}
+        handleChange={(e: ChangeEvent<HTMLInputElement>) => handleChange(e)}
       />
-      <button type="submit">Zaloguj</button>
+      <Button label='Zaloguj' type="submit" />
     </form>
   )
 }

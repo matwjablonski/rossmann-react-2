@@ -1,4 +1,5 @@
 import React from 'react';
+import ContactForm from './components/ContactForm/ContactForm';
 import Header from './components/Header/Header';
 import LoginForm from './components/LoginForm/LoginForm';
 import Transfers from './components/Transfers/Transfers';
@@ -10,6 +11,7 @@ function App() {
       <Header welcomeMsg="Witaj w moim banku" />
       <LoginForm />
       <Transfers transfers={data.transfers}/>
+      <ContactForm />
     </main>
   );
 }
