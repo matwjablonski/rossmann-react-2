@@ -1,4 +1,18 @@
-export const data = {
+export type Transfer = {
+  id: number;
+  name: string;
+  value: number;
+  currency: 'PLN' | 'USD' | 'EUR';
+  date: string | Date;
+  type: 'income' | 'outcome';
+}
+
+type Data = {
+  transfers: Transfer[];
+  user: any;
+}
+
+export const data: Data = {
   "transfers": [
     {
       "id": 1,
