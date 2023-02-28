@@ -1,16 +1,14 @@
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { Transfer as TransferType } from '../../data';
 import AccountSummary from '../AccountSummary/AccountSummary';
 import Filter from '../Filter/Filter';
 import TransferComponent from '../Transfer/Transfer';
 
-interface TransfersProps {
-  transfers: TransferType[];
-}
+interface TransfersProps {}
 
-const Transfers = ({ transfers }: TransfersProps) => {
+const Transfers = ({}: TransfersProps) => {
   const [ activeTransfer, setActiveTransfer ] = useState<number | null>(null);
-  const [ filteredTransfers, setFilteredTransfers ] = useState<TransferType[]>([]);
+  const [ transfers, setTransfers ] = useState<TransferType[]>([]);
   
   const incomeInTotal = useMemo(() => transfers.reduce((acc, curr) => {
     if (curr.type === 'income') {
@@ -39,13 +37,26 @@ const Transfers = ({ transfers }: TransfersProps) => {
  
   const filterBy = (selectedFilter: string) => {
     if (selectedFilter !== '') {
-      setFilteredTransfers(
+      setTransfers(
         transfers.filter(transfer => transfer.type === selectedFilter),
       );
     } else {
-      setFilteredTransfers([]);
+      fetchTransfers();
     }
   }
+
+  const fetchTransfers = async () => {
+    try {
+      const response = await fetch('http://localhost:8000/api/transfers');
+      const { data }: { data: TransferType[]}  = await response.json();
+      
+      setTransfers(data);
+    } catch {}
+  }
+
+  useEffect(() => {
+    fetchTransfers();
+  }, []);
 
   return (
     <>
@@ -60,7 +71,7 @@ const Transfers = ({ transfers }: TransfersProps) => {
       />
       <ul>
         {
-          (filteredTransfers.length > 0 ? filteredTransfers : transfers)
+          transfers
             .map(({ id, ...transferData}) => <TransferComponent 
               key={id}
               id={id}

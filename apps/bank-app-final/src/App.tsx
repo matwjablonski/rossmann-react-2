@@ -5,7 +5,8 @@ import Header from './components/Header/Header';
 import LoginForm from './components/LoginForm/LoginForm';
 import Transfers from './components/Transfers/Transfers';
 import User from './components/User/User';
-import { data, UserData } from './data';
+import { UserData } from './data';
+import { Routes, Route } from 'react-router-dom';
 
 type UserAuthData = {
   user: UserData | null;
@@ -43,14 +44,17 @@ function App() {
   return (
     <main>
       <Header welcomeMsg="Witaj w moim banku" />
-      {authData.isAuthenticated && <User 
-        name={data.user.name}
-        profession={data.user.profession}
-        imageUrl={data.user.avatar}
+      {authData.isAuthenticated && authData.user && <User 
+        name={authData.user.name}
+        profession={authData.user.profession}
+        imageUrl={authData.user.avatar}
       />}
       {!authData.isAuthenticated && <LoginForm loginAction={handleLogin} />}
-      <Transfers transfers={data.transfers}/>
-      <ContactForm />
+      <Routes>
+        <Route path="/contact" element={<ContactForm />} />
+      </Routes>
+      <Transfers />
+      
       <Footer />
     </main>
   );
