@@ -1,8 +1,12 @@
-import { ChangeEvent, SyntheticEvent, useState } from 'react';
+import { ChangeEvent, FC, SyntheticEvent, useState } from 'react';
 import Button from '../Button/Button';
 import FormField from '../FormField/FormField';
 
-const LoginForm = () => {
+interface LoginFormProps {
+  loginAction: (isAuthenticated: boolean) => void;
+}
+
+const LoginForm: FC<LoginFormProps> = ({ loginAction }) => {
   const [ formValue, setFormValue ] = useState({
     login: '',
     password: '',
@@ -11,7 +15,7 @@ const LoginForm = () => {
   const handleSubmit = (e: SyntheticEvent) => {
     e.preventDefault();
 
-    console.log(formValue)
+    loginAction(!!(formValue.login && formValue.password));
   }
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {

@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, useEffect } from 'react';
 import { Transfer } from '../../data';
 
 interface AccountSummaryProps {

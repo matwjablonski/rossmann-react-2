@@ -7,9 +7,16 @@ export type Transfer = {
   type: 'income' | 'outcome';
 }
 
+type UserData = {
+  name: string,
+  age: number,
+  avatar: string;
+  profession: string;
+}
+
 type Data = {
   transfers: Transfer[];
-  user: any;
+  user: UserData;
 }
 
 export const data: Data = {
