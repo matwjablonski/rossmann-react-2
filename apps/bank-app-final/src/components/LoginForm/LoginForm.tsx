@@ -1,9 +1,10 @@
 import { ChangeEvent, FC, SyntheticEvent, useState } from 'react';
+import { useAuth } from '../../hooks/useAuth';
 import Button from '../Button/Button';
 import FormField from '../FormField/FormField';
 
 interface LoginFormProps {
-  loginAction: (isAuthenticated: boolean) => void;
+  loginAction: () => void;
 }
 
 const LoginForm: FC<LoginFormProps> = ({ loginAction }) => {
@@ -15,7 +16,9 @@ const LoginForm: FC<LoginFormProps> = ({ loginAction }) => {
   const handleSubmit = (e: SyntheticEvent) => {
     e.preventDefault();
 
-    loginAction(!!(formValue.login && formValue.password));
+    if (!!(formValue.login && formValue.password)) {
+      loginAction();
+    }
   }
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
