@@ -1,4 +1,4 @@
-import { ChangeEvent, SyntheticEvent, useRef, useState } from 'react'
+import { ChangeEvent, SyntheticEvent, useCallback, useRef, useState } from 'react'
 import Button from '../Button/Button';
 import FormField from '../FormField/FormField';
 
@@ -11,13 +11,11 @@ const ContactForm = () => {
 
   const areFormReady = formValues.message && formValues.time && formValues.topic;
 
-  const handleSubmit = (e: SyntheticEvent) => {
+  const handleSubmit = useCallback((e: SyntheticEvent) => {
     e.preventDefault();
 
-    console.log(formValues);
-
     alert('Wiadomość została wysłana.')
-  }
+  }, []);
 
   const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     const nameField = e.currentTarget.name;

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import ContactForm from './components/ContactForm/ContactForm';
+import Footer from './components/Footer/Footer';
 import Header from './components/Header/Header';
 import LoginForm from './components/LoginForm/LoginForm';
 import Transfers from './components/Transfers/Transfers';
@@ -24,6 +25,7 @@ function App() {
       {!isAuthenticated && <LoginForm loginAction={handleLogin} />}
       <Transfers transfers={data.transfers}/>
       <ContactForm />
+      <Footer />
     </main>
   );
 }

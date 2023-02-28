@@ -1,5 +1,6 @@
 import { FC, useEffect } from 'react';
 import { Transfer } from '../../data';
+import { prepareWindowTitle } from '../../utils/prepareWindowTitle';
 
 interface AccountSummaryProps {
   incomeInTotal: number;
@@ -12,6 +13,12 @@ const AccountSummary: FC<AccountSummaryProps> = ({
   outcomeInTotal,
   currentTransfer,
 }) => {
+
+  useEffect(() => {
+    document.title = prepareWindowTitle(currentTransfer?.name || '');
+  }, [
+    currentTransfer?.name
+  ])
 
   return (
     <div>
