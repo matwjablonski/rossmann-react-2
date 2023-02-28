@@ -4,6 +4,7 @@ import TransferDetails from '../TransferDetails/TransferDetails';
 import { TransferProps } from './Transfer.model';
 import TransferTypeComponent from '../TransferType/TransferType';
 import { Link } from 'react-router-dom';
+import { TransferBox } from './Transfer.styled';
 
 const Transfer: FC<TransferProps> = ({
   id,
@@ -16,17 +17,13 @@ const Transfer: FC<TransferProps> = ({
   handleClick,
 }) => {
   const [ showDetails, setShowDetails ] = useState<boolean>(false);
-  const styleObj = {
-    padding: '10px',
-    color: showDetails ? 'red' : 'blue',
-  }
 
   const onClick = () => {
     handleClick(id);
     setShowDetails((prevState) => !prevState);
   }
 
-  return <li style={styleObj}>
+  return <TransferBox showDetails={showDetails}>
     <div onClick={onClick}>
       {name}
     </div>
@@ -38,7 +35,7 @@ const Transfer: FC<TransferProps> = ({
       date={date}
       typeComponent={<TransferTypeComponent type={type}/>}  
     />}
-  </li>
+  </TransferBox>
 }
 
 export default Transfer;

@@ -1,4 +1,6 @@
 import { FC } from 'react';
+import Avatar from '@mui/material/Avatar';
+import { UserBox, UserName } from './User.styled';
 
 interface UserProps {
   name: string;
@@ -8,10 +10,10 @@ interface UserProps {
 
 const User: FC<UserProps> = ({ name, profession, imageUrl }) => {
   return (
-    <div>
-      <h2>{name} ({profession})</h2>
-      <img src={imageUrl} alt={name} style={{ width: '200px' }} />
-    </div>
+    <UserBox>
+      <Avatar src={imageUrl} alt={name} />
+      <UserName>{name} <span>({profession})</span></UserName>
+    </UserBox>
   )
 }
 

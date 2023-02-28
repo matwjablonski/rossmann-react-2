@@ -11,6 +11,7 @@ import Transactions from './views/Transactions';
 import Transaction from './views/Transaction';
 import './global.css';
 import Container from './components/Container/Container';
+import { useRequest } from './hooks/useRequest';
 
 type UserAuthData = {
   user: UserData | null;
@@ -23,25 +24,12 @@ function App() {
     user: null,
   });
 
-  const fetchUser = async () => {
-    try {
-      const response = await fetch('http://localhost:8000/api/user');
-      const { data }: { data: UserData } = await response.json();
-
-      setAuthData({
-        isAuthenticated: false,
-        user: data,
-      })
-    } catch {}
-  }
+  const { data: user, isLoading } = useRequest<UserData>('user');
 
   const handleLogin = async (isAuth: boolean) => {
     if (isAuth) {
-      await fetchUser();
-      setAuthData((prevState) => ({
-        user: prevState.user ? {
-          ...prevState.user
-        } : null,
+      setAuthData(({
+        user: user,
         isAuthenticated: true,
       }));
     }
