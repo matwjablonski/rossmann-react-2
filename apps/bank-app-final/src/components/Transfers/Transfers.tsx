@@ -8,7 +8,7 @@ import styles from './Transfers.module.scss';
 
 const Transfers = () => {
   const [ activeTransfer, setActiveTransfer ] = useState<number | null>(null);
-  const { data: transfers, isLoading } = useRequest<TransferType[]>('transfers')
+  const { data: transfers, isLoading } = useRequest<TransferType[]>('transfers');
   const [ filteredTransfers, setFilteredTransfers ] = useState<TransferType[]>([]);
   
   const incomeInTotal = useMemo(() => transfers ? transfers.reduce((acc, curr) => {
@@ -46,7 +46,7 @@ const Transfers = () => {
     }
   }
 
-  return (
+  return isLoading ? <>Trwa ładowanie danych</> : (
     <section className={styles.Transfers}>
       {transfers && <AccountSummary
         incomeInTotal={incomeInTotal}
