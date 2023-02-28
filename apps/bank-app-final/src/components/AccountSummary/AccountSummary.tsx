@@ -1,6 +1,7 @@
 import { FC, useEffect } from 'react';
 import { Transfer } from '../../data';
 import { prepareWindowTitle } from '../../utils/prepareWindowTitle';
+import Modal from '../Modal/Modal';
 
 interface AccountSummaryProps {
   incomeInTotal: number;
@@ -28,6 +29,7 @@ const AccountSummary: FC<AccountSummaryProps> = ({
       <div>
         <div>Wpływy: {incomeInTotal}</div>
         <div>Płatności: {outcomeInTotal}</div>
+        {currentTransfer?.name && <Modal value={currentTransfer?.name} />}
       </div>
     </div>
   )
