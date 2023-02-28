@@ -1,4 +1,4 @@
-import { ChangeEvent, SyntheticEvent, useCallback, useRef, useState } from 'react'
+import { ChangeEvent, SyntheticEvent, useCallback, useState } from 'react'
 import Button from '../Button/Button';
 import FormField from '../FormField/FormField';
 

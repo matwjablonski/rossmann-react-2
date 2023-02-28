@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useMemo, useState } from 'react';
 import { Transfer as TransferType } from '../../data';
 import AccountSummary from '../AccountSummary/AccountSummary';
 import Filter from '../Filter/Filter';
@@ -25,6 +25,17 @@ const Transfers = ({ transfers }: TransfersProps) => {
     }
     return acc;
   }, 0), [transfers]);
+
+  const filterOptions = useMemo(() => [
+    {
+      name: 'Wpływ',
+      value: 'income',
+    },
+    {
+      name: 'Wydatek',
+      value: 'outcome',
+    }
+  ], []);
  
   const filterBy = (selectedFilter: string) => {
     if (selectedFilter !== '') {
@@ -44,16 +55,7 @@ const Transfers = ({ transfers }: TransfersProps) => {
         currentTransfer={transfers.find(transfer => transfer.id === activeTransfer)}
       />
       <Filter
-        options={[
-          {
-            name: 'Wpływ',
-            value: 'income',
-          },
-          {
-            name: 'Wydatek',
-            value: 'outcome',
-          }
-        ]}
+        options={filterOptions}
         filterAction={filterBy}
       />
       <ul>
