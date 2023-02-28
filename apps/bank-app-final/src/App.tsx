@@ -9,6 +9,8 @@ import Home from './views/Home';
 import Contact from './views/Contact';
 import Transactions from './views/Transactions';
 import Transaction from './views/Transaction';
+import './global.css';
+import Container from './components/Container/Container';
 
 type UserAuthData = {
   user: UserData | null;
@@ -48,19 +50,20 @@ function App() {
   return (
     <main>
       <Header bankName="Bank Roossnę" />
-
-      {authData.isAuthenticated && authData.user && <User 
-        name={authData.user.name}
-        profession={authData.user.profession}
-        imageUrl={authData.user.avatar}
-      />}
-      {!authData.isAuthenticated && <LoginForm loginAction={handleLogin} />}
-      <Routes>
-        <Route path="/" element={<Home />}/>
-        <Route path="/contact" element={<Contact />} />
-        <Route path="/history" element={<Transactions />} />
-        <Route path="/history/:id" element={<Transaction />}/>
-      </Routes>
+      <Container>
+        {authData.isAuthenticated && authData.user && <User 
+          name={authData.user.name}
+          profession={authData.user.profession}
+          imageUrl={authData.user.avatar}
+        />}
+        {!authData.isAuthenticated && <LoginForm loginAction={handleLogin} />}
+        <Routes>
+          <Route path="/" element={<Home />}/>
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/history" element={<Transactions />} />
+          <Route path="/history/:id" element={<Transaction />}/>
+        </Routes>
+      </Container>
       <Footer />
     </main>
   );

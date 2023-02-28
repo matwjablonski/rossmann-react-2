@@ -3,6 +3,7 @@ import { Transfer as TransferType } from '../../data';
 import AccountSummary from '../AccountSummary/AccountSummary';
 import Filter from '../Filter/Filter';
 import TransferComponent from '../Transfer/Transfer';
+import styles from './Transfers.module.scss';
 
 interface TransfersProps {}
 
@@ -59,7 +60,7 @@ const Transfers = ({}: TransfersProps) => {
   }, []);
 
   return (
-    <>
+    <section className={styles.Transfers}>
       <AccountSummary
         incomeInTotal={incomeInTotal}
         outcomeInTotal={outcomeInTotal}
@@ -69,7 +70,7 @@ const Transfers = ({}: TransfersProps) => {
         options={filterOptions}
         filterAction={filterBy}
       />
-      <ul>
+      <ul className={styles.List}>
         {
           transfers
             .map(({ id, ...transferData}) => <TransferComponent 
@@ -81,7 +82,7 @@ const Transfers = ({}: TransfersProps) => {
             />)
           }
       </ul>
-    </>
+    </section>
   )
 }
 

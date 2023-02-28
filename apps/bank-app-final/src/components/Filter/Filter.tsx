@@ -1,5 +1,6 @@
 import { ChangeEvent, FC, useState } from 'react';
 import Button from '../Button/Button';
+import { StyledChip } from './Filter.styled';
 
 export type FilterOption = {
   name: string;
@@ -32,7 +33,7 @@ const Filter: FC<FilterProps> = ({ options, filterAction }) => {
       </select>
 
       {selectedFilter && <div>
-        <span>{options.find(option => option.value === selectedFilter)!.name}</span>
+        <StyledChip label={options.find(option => option.value === selectedFilter)!.name} />
         <Button type='button' label='Clear' onClick={clearFilter} />
       </div>}
     </div>
