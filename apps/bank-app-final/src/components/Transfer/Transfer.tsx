@@ -3,6 +3,7 @@ import { prepareTransferValue } from '../../utils/prepareTransferValue';
 import TransferDetails from '../TransferDetails/TransferDetails';
 import { TransferProps } from './Transfer.model';
 import TransferTypeComponent from '../TransferType/TransferType';
+import { Link } from 'react-router-dom';
 
 const Transfer: FC<TransferProps> = ({
   id,
@@ -31,6 +32,7 @@ const Transfer: FC<TransferProps> = ({
     </div>
     <div>
       {prepareTransferValue(value, currency)}
+      <Link to={`/history/${id}`}>Zobacz szczegóły</Link>
     </div>
     {isActive && <TransferDetails
       date={date}

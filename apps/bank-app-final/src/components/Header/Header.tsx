@@ -1,15 +1,17 @@
 import { FC } from 'react';
+import Nav from '../Nav/Nav';
 
 type HeaderProps = {
-  welcomeMsg: string;
+  bankName: string;
 }
 
-const Header: FC<HeaderProps> = ({ welcomeMsg }) => {
+const Header: FC<HeaderProps> = ({ bankName }) => {
   return (
     <header style={{
       textAlign: 'center'
     }}>
-      {welcomeMsg}
+      {bankName}
+      <Nav />
     </header>
   )
 }

@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
-import ContactForm from './components/ContactForm/ContactForm';
 import Footer from './components/Footer/Footer';
 import Header from './components/Header/Header';
 import LoginForm from './components/LoginForm/LoginForm';
-import Transfers from './components/Transfers/Transfers';
 import User from './components/User/User';
 import { UserData } from './data';
 import { Routes, Route } from 'react-router-dom';
+import Home from './views/Home';
+import Contact from './views/Contact';
+import Transactions from './views/Transactions';
+import Transaction from './views/Transaction';
 
 type UserAuthData = {
   user: UserData | null;
@@ -43,7 +45,7 @@ function App() {
 
   return (
     <main>
-      <Header welcomeMsg="Witaj w moim banku" />
+      <Header bankName="Bank Roossnę" />
       {authData.isAuthenticated && authData.user && <User 
         name={authData.user.name}
         profession={authData.user.profession}
@@ -51,10 +53,11 @@ function App() {
       />}
       {!authData.isAuthenticated && <LoginForm loginAction={handleLogin} />}
       <Routes>
-        <Route path="/contact" element={<ContactForm />} />
+        <Route path="/" element={<Home />}/>
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/history" element={<Transactions />} />
+        <Route path="/history/:id" element={<Transaction />}/>
       </Routes>
-      <Transfers />
-      
       <Footer />
     </main>
   );
