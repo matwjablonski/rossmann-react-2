@@ -36,16 +36,19 @@ function App() {
   const handleLogin = async (isAuth: boolean) => {
     if (isAuth) {
       await fetchUser();
-      setAuthData({
-        ...authData,
+      setAuthData((prevState) => ({
+        user: prevState.user ? {
+          ...prevState.user
+        } : null,
         isAuthenticated: true,
-      });
+      }));
     }
   }
 
   return (
     <main>
       <Header bankName="Bank Roossnę" />
+
       {authData.isAuthenticated && authData.user && <User 
         name={authData.user.name}
         profession={authData.user.profession}
