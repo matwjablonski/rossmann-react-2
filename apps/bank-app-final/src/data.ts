@@ -7,7 +7,7 @@ export type Transfer = {
   type: 'income' | 'outcome';
 }
 
-type UserData = {
+export type UserData = {
   name: string,
   age: number,
   avatar: string;
