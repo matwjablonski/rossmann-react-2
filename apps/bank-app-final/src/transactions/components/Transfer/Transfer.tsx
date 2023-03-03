@@ -24,7 +24,7 @@ const Transfer: FC<TransferProps> = ({
   }
 
   return <TransferBox showDetails={showDetails}>
-    <div onClick={onClick}>
+    <div onClick={onClick} data-testid="transfer-box">
       {name}
     </div>
     <div>
