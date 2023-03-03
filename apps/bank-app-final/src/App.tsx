@@ -4,8 +4,6 @@ import Header from './components/Header/Header';
 import LoginForm from './components/LoginForm/LoginForm';
 import User from './components/User/User';
 import { Routes, Route } from 'react-router-dom';
-import Transactions from './views/Transactions';
-import Transaction from './views/Transaction';
 import './global.css';
 import Container from './components/Container/Container';
 import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute';
@@ -13,6 +11,8 @@ import { useAuth } from './hooks/useAuth';
 
 const Home = lazy(() => import('./views/Home'));
 const Contact = lazy(() => import('./views/Contact'));
+const Transaction = lazy(() => import('./transactions/views/Transaction'));
+const Transactions = lazy(() => import('./transactions/views/Transactions'));
 
 function App() {
   const {isLoggedIn, activeUser, loginAction} = useAuth();

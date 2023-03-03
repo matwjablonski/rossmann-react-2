@@ -1,4 +1,4 @@
-import { Transfer as TransferType } from '../../data';
+import { Transfer as TransferType } from '../../models/transfer.model';
 
 export interface TransferProps extends TransferType {
   isActive: boolean;
