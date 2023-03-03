@@ -1,5 +1,5 @@
 import { FC, ReactNode } from 'react';
-import { prepareDate } from '../../../utils/prepareDate';
+import { prepareDate } from '../../../common/utils/prepareDate';
 
 interface TransferDetailsProps {
   date: string | Date;

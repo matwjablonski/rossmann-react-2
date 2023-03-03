@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { UserData } from '../../data';
-import { useRequest } from '../../hooks/useRequest';
+import { useRequest } from '../../common/hooks/useRequest';
 
 export const useAuth = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);

@@ -1,7 +1,7 @@
 import { ChangeEvent, FC, SyntheticEvent, useState } from 'react';
 import { useAuth } from '../../hooks/useAuth';
-import Button from '../../../components/Button/Button';
-import FormField from '../../../components/FormField/FormField';
+import Button from '../../../common/components/Button/Button';
+import FormField from '../../../common/components/FormField/FormField';
 
 interface LoginFormProps {
   loginAction: () => void;

@@ -1,6 +1,6 @@
 import { FC, useEffect } from 'react';
-import { prepareWindowTitle } from '../../../utils/prepareWindowTitle';
-import Modal from '../../../components/Modal/Modal';
+import { prepareWindowTitle } from '../../../common/utils/prepareWindowTitle';
+import Modal from '../../../common/components/Modal/Modal';
 import { useSelector } from 'react-redux';
 import { RootStore } from '../../../store';
 

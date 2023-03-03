@@ -1,8 +1,8 @@
 import { useMemo, useState } from 'react';
 import AccountSummary from '../AccountSummary/AccountSummary';
-import Filter from '../../../components/Filter/Filter';
+import Filter from '../../../common/components/Filter/Filter';
 import { Transfer as TransferType } from '../../models/transfer.model';
-import { useRequest } from '../../../hooks/useRequest';
+import { useRequest } from '../../../common/hooks/useRequest';
 import TransferComponent from '../Transfer/Transfer';
 import styles from './Transfers.module.scss';
 import { RootStore } from '../../../store';

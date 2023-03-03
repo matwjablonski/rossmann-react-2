@@ -1,6 +1,6 @@
 import { FC, useContext } from 'react';
-import User from '../../user/components/User/User';
-import { UserContext } from '../../user/contexts/User.context';
+import User from '../../../user/components/User/User';
+import { UserContext } from '../../../user/contexts/User.context';
 import Nav from '../Nav/Nav';
 
 type HeaderProps = {
