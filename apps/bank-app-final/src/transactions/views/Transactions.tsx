@@ -7,7 +7,7 @@ const Transactions = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(incrementVisitsOnHistoryPage(''))
+    dispatch(incrementVisitsOnHistoryPage());
   }, []);
 
   return (

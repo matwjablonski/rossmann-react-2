@@ -1,19 +1,19 @@
 import { FC, useEffect } from 'react';
-import { Transfer } from '../../data';
-import { prepareWindowTitle } from '../../utils/prepareWindowTitle';
-import Modal from '../Modal/Modal';
+import { prepareWindowTitle } from '../../../utils/prepareWindowTitle';
+import Modal from '../../../components/Modal/Modal';
+import { useSelector } from 'react-redux';
+import { RootStore } from '../../../store';
 
 interface AccountSummaryProps {
   incomeInTotal: number;
   outcomeInTotal: number;
-  currentTransfer?: Transfer;
 }
 
 const AccountSummary: FC<AccountSummaryProps> = ({
   incomeInTotal,
   outcomeInTotal,
-  currentTransfer,
 }) => {
+  const currentTransfer = useSelector((state: RootStore) => state.transactions.currentTransfer);
 
   useEffect(() => {
     document.title = prepareWindowTitle(currentTransfer?.name || '');

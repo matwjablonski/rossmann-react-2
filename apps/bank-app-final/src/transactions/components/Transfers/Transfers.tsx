@@ -1,18 +1,20 @@
 import { useMemo, useState } from 'react';
-import AccountSummary from '../../../components/AccountSummary/AccountSummary';
+import AccountSummary from '../AccountSummary/AccountSummary';
 import Filter from '../../../components/Filter/Filter';
 import { Transfer as TransferType } from '../../models/transfer.model';
 import { useRequest } from '../../../hooks/useRequest';
 import TransferComponent from '../Transfer/Transfer';
 import styles from './Transfers.module.scss';
-import { useSelector } from 'react-redux';
 import { RootStore } from '../../../store';
+import { useDispatch, useSelector } from 'react-redux';
+import { setCurrentTransfer } from '../../redux/transactions.slice';
 
 const Transfers = () => {
-  const [ activeTransfer, setActiveTransfer ] = useState<number | null>(null);
   const { data: transfers, isLoading } = useRequest<TransferType[]>('transfers');
   const [ filteredTransfers, setFilteredTransfers ] = useState<TransferType[]>([]);
   const visits = useSelector((state: RootStore) => state.transactions.visits);
+  const dispatch = useDispatch();
+  const currentTransfer = useSelector((state: RootStore) => state.transactions.currentTransfer);
   
   const incomeInTotal = useMemo(() => transfers ? transfers.reduce((acc, curr) => {
     if (curr.type === 'income') {
@@ -49,13 +51,18 @@ const Transfers = () => {
     }
   }
 
+  const setActiveTransfer = (id: number) => {
+    const selectedTransfer = (filteredTransfers.length > 0 ? filteredTransfers : transfers || [])
+      .find(transfer => transfer.id === id)
+    dispatch(setCurrentTransfer(selectedTransfer));
+  }
+
   return isLoading ? <>Trwa ładowanie danych</> : (
     <section className={styles.Transfers}>
       <p>Stronę odwiedzono: {visits} razy</p>
       {transfers && <AccountSummary
         incomeInTotal={incomeInTotal}
         outcomeInTotal={outcomeInTotal}
-        currentTransfer={transfers.find(transfer => transfer.id === activeTransfer)}
       />}
       <Filter
         options={filterOptions}
@@ -67,7 +74,7 @@ const Transfers = () => {
             .map(({ id, ...transferData}) => <TransferComponent 
               key={id}
               id={id}
-              isActive={id === activeTransfer}
+              isActive={id === currentTransfer?.id}
               handleClick={(id) => setActiveTransfer(id)}
               {...transferData}
             />)
